@@ -32,6 +32,10 @@ public class Main {
                     choiceClass(0);// Add Person with data
                     break;
                 case "3":
+                    if(people.isEmpty()){
+                        System.out.println("No people");
+                        break;
+                    }
                     System.out.print("Enter index to delete: ");
                     if(scanner.hasNextInt()){
                         int index = scanner.nextInt();
@@ -47,6 +51,10 @@ public class Main {
                     break;
                 case "5":
                     int firstIndex, secondIndex;
+                    if(people.isEmpty() || people.size() == 1){
+                        System.out.println("No two people to compare");
+                        break;
+                    }
                     System.out.print("Enter first index to compare: ");
                     if(scanner.hasNextInt()){
                         firstIndex = scanner.nextInt();
@@ -95,6 +103,10 @@ public class Main {
 
     // Display all people in the list
     private static void printAllPeople() {
+        if(people.isEmpty()){
+            System.out.println("No people");
+            return;
+        }
         for (int i = 0; i < people.size(); i++) {
             System.out.println("Index " + i + ": " + people.get(i));
         }
