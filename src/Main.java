@@ -2,13 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Главный класс приложения
+// Main class of the application
 public class Main {
+    // List to store Person objects
     private static final List<Person> people = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     private static boolean finish = true;
+
+    // Main method
     public static void main(String[] args) {
         while(finish){
+            // Display menu options
             System.out.println("""
                     Menu:
                     1.Add empty Person
@@ -18,19 +22,20 @@ public class Main {
                     5.Comparison of two people
                     6.Exit
                     (1-6):""");
+            // Read user choice
             String choice = scanner.nextLine();
             switch (choice){
                 case "1":
-                    choiceClass(1);
+                    choiceClass(1);// Add empty Person
                     break;
                 case "2":
-                    choiceClass(0);
+                    choiceClass(0);// Add Person with data
                     break;
                 case "3":
                     System.out.print("Enter index to delete: ");
                     if(scanner.hasNextInt()){
                         int index = scanner.nextInt();
-                        removePerson(index);
+                        removePerson(index);// Delete Person
                     }
                     else{
                         errorOut();
@@ -38,7 +43,7 @@ public class Main {
                     scanner.nextLine();
                     break;
                 case "4":
-                    printAllPeople();
+                    printAllPeople(); // Display all people
                     break;
                 case "5":
                     int firstIndex, secondIndex;
@@ -61,11 +66,11 @@ public class Main {
                         scanner.nextLine();
                         break;
                     }
-                    System.out.println(comparePeople(firstIndex, secondIndex));
+                    System.out.println(comparePeople(firstIndex, secondIndex)); // Compare two people
                     scanner.nextLine();
                     break;
                 case "6":
-                    finish = false;
+                    finish = false; // Exit
                     break;
                 default:
                     System.out.println("Incorrect choice.");
@@ -73,10 +78,12 @@ public class Main {
         }
     }
 
+    // Add Person to the list
     private static void addPerson(Person person) {
         people.add(person);
     }
 
+    // Remove Person from the list
     private static void removePerson(int index) {
         if (index >= 0 && index < people.size()) {
             people.remove(index);
@@ -86,12 +93,14 @@ public class Main {
         }
     }
 
+    // Display all people in the list
     private static void printAllPeople() {
         for (int i = 0; i < people.size(); i++) {
             System.out.println("Index " + i + ": " + people.get(i));
         }
     }
 
+    // Compare two people based on their indexes
     private static String comparePeople(int index1, int index2) {
         if (index1 >= 0 && index1 < people.size() &&
                 index2 >= 0 && index2 < people.size()) {
@@ -106,6 +115,7 @@ public class Main {
         }
     }
 
+    // Method to add Person, Employee, Teacher, or Student based on user input
     private static void choiceClass(int isEmpty){
         System.out.print("Enter who to add(Person, Employee, Teacher, Student): ");
         String choice = scanner.nextLine();
@@ -208,10 +218,12 @@ public class Main {
         }
     }
 
+    // Method to handle input errors
     private static void errorOut(){
         System.out.println("Input error");
     }
 
+    // Method to input age and validate it
     private static int inputAge(){
         System.out.print("Enter age(0 - 200): ");
         if(scanner.hasNextInt()){
@@ -230,6 +242,7 @@ public class Main {
         }
     }
 
+    // Method to input salary and validate it
     private static int inputSalary(){
         System.out.print("Enter salary: ");
         if(scanner.hasNextInt()){
